@@ -1,14 +1,11 @@
 {
 
-    
     "express": {
         "view cache": false,
         "view engine": "js",
         "views": "path:./.build/templates"
     },
-    
 
-    
     "view engines": {
         "js": {
             "module": "engine-munger",
@@ -26,41 +23,89 @@
             }
         }
     },
-    
 
-    
+
     "i18n": {
         "contentPath": "path:./locales",
         "fallback": "en-US"
     },
-    
 
-    "specialization": {
-    },
+
 
     "middleware": {
-
-        
-        "expressView": {
-            "priority": 100,
-            "enabled": true,
+        /**
+         * Override the default lusca configuration to disable CSRF handling.
+         */
+        "appsec": {
             "module": {
-                "name": "engine-munger/lib/expressView"
+                "arguments": [
+                    {
+                        "xframe": "SAMEORIGIN",
+                        "p3p": false,
+                        "csp": false
+                    }
+                ]
             }
         },
-        
+
+        /**
+         * Enable *ONLY* CSRF filtered by route.
+         * Note: The route "regex" needs the double parens
+         * because of how express parses route strings.
+         */
+        "csrf": {
+            "enabled": true,
+            "priority": 111,
+            "route": "/((?!manage))*",
+            "module": {
+                "name": "lusca",
+                "method": "csrf",
+                "arguments": [ {} ]
+            }
+        },
 
         "static": {
             "module": {
                 "arguments": [ "path:./.build" ]
             }
-        },
+        }
 
-        "router": {
+        ,"router": {
             "module": {
                 "arguments": [{ "directory": "path:./controllers" }]
             }
         }
+
+
+        ,"expressView": {
+            "priority": 100,
+            "enabled": true,
+            "module": {
+                "name": "engine-munger/lib/expressView"
+            }
+        }
+
+
+
+
+        ,"fileNotFound": {
+            "enabled": true,
+            "priority": 130,
+            "module": {
+                "name": "kraken-js/middleware/404",
+                "arguments": [ "errors/404" ]
+            }
+        }
+
+        ,"serverError": {
+            "enabled": true,
+            "priority": 140,
+            "module": {
+                "name": "kraken-js/middleware/500",
+                "arguments": [ "errors/500" ]
+            }
+        }
+
 
     }
 }

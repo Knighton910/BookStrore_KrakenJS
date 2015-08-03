@@ -1,36 +1,19 @@
+{!
+ the bug was here. line 16 i was missing
+ the lowdash in front of the id call
+!}
+
 {>"layouts/master" /}
 
 {<body}
-    <div class="large-3 columns book">
-        <img src="/img/node1.jpg">
-        <h4>Professional Node.js</h1>
-        <p>Trust fund lomo bespoke blog cornhole heirloom meggings,  vegan Thundercats. </p>
-        <div class="price">Buy it for <span>19.99</span></div>
-        </br>
-        <a href='/books/details/1'>Books Details</a>
-    </div>
-     <div class="large-3 columns book">
-            <img src="/img/node2.jpg">
-            <h4>Node.js Blueprints</h1>
-            <p>Ttofu gentrify Thundercaburg post-ironic, jean shorts plaid American Apparel mlkshk fashion axe sustainable gastropub vegan Thundercats. </p>
-            <div class="price">Buy it for <span>29.99</span></div>
-            </br>
-            <a href='/books/details/1'>Books Details</a>
-        </div>
-         <div class="large-3 columns book">
-                <img src="/img/node3.jpg">
-                <h4>Professional Node.js</h1>
-                <p>Trust fund lomo bespoke blog cornhole heirloom meggings, tofu gentrify Thundercats forage twee. Blog Williamsburg post-ironi. </p>
-                <div class="price">Buy it for <span>49.99</span></div>
-                </br>
-                <a href='/books/details/1'>Books Details</a>
-            </div>
-             <div class="large-3 columns book">
-                    <img src="/img/node4.jpg">
-                    <h4>Professional Node.js</h1>
-                    <p> Go forth and be awesome. </p>
-                    <div class="price">Buy it for <span>9.99</span></div>
-                    </br>
-                    <a href='/books/details/1'>Books Details</a>
-                </div>
+	{#books}
+		<div class="large-3 columns book">
+		<img src="/img/{.cover}">
+		<h4>{.title}</h4>
+		<p>{.truncText}</p>
+		<div class="price">Buy it for <span>${.price}</span></div>
+		<br>
+		<a href="/books/details/{._id}" class="button small">Book Details</a>
+	</div>
+	{/books}
 {/body}
