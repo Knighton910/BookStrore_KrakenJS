@@ -1,5 +1,7 @@
 TekBooks
 ===========
+![travis build](https://img.shields.io/travis/USER/REPO.svg)
+![]()
 
 
 TekBooks is a book store, intergrated with krakenjs & more
