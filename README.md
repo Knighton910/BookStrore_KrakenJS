@@ -1,7 +1,7 @@
 TekBooks
 ===========
 ![travis build](https://img.shields.io/travis/kentcdodds/starwars-names.svg)
-![]()
+
 
 
 TekBooks is a book store, intergrated with krakenjs & more
