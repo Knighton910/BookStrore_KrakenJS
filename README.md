@@ -1,6 +1,6 @@
 TekBooks
 ===========
-![travis build](https://img.shields.io/travis/USER/REPO.svg)
+![travis build](https://img.shields.io/travis/kentcdodds/starwars-names.svg)
 ![]()
 
 
